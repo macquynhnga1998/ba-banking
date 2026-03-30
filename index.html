@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIỆT BREW - Premium Vietnamese Milk Tea</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+/* Sài Gòn Cerulean Design System */
+:root {
+    /* Colors */
+    --primary: #006591;
+    --primary-container: #0EA5E9;
+    --secondary: #00668a;
+    --secondary-container: #38BDF8;
+    --tertiary-container: #F97316; /* Warm Orange CTA */
+    
+    --background: #f7f9fb;
+    --surface: #ffffff;
+    --surface-container-low: #f2f4f6;
+    --surface-container: #eceef0;
+    --surface-container-highest: #e0e3e5;
+
+    --on-background: #191c1e;
+    --on-surface-variant: #3e4850;
+    --outline-variant: #bec8d2;
+
+    /* Shadows */
+    --shadow-ambient: 0 20px 40px rgba(25, 28, 30, 0.04);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background-color: var(--background);
+    color: var(--on-background);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.text-center { text-align: center; }
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: none;
+    transition: all 0.3s ease-out;
+}
+
+.btn-primary {
+    background-color: var(--tertiary-container);
+    color: #ffffff;
+    border-radius: 9999px;
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+}
+
+.btn-primary:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(249, 115, 22, 0.2);
+}
+
+/* Layout */
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 3rem);
+    max-width: 1200px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-radius: 9999px;
+    z-index: 100;
+    box-shadow: var(--shadow-ambient);
+}
+
+.logo {
+    font-weight: 900;
+    font-size: 1.25rem;
+    color: var(--primary);
+    letter-spacing: -0.02em;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--on-surface-variant);
+    font-weight: 500;
+    margin: 0 1rem;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.nav-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+}
+
+/* Hero */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 6rem;
+    background: linear-gradient(135deg, var(--background) 0%, var(--surface-container-low) 100%);
+    position: relative;
+}
+
+.hero-content {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    z-index: 10;
+    width: 100%;
+}
+
+.hero-title {
+    font-size: clamp(4rem, 10vw, 12rem);
+    color: var(--primary);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    white-space: nowrap;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    max-width: 500px;
+    color: var(--on-surface-variant);
+    margin-bottom: 3rem;
+    font-weight: 400;
+}
+
+.hero-image-container {
+    position: absolute;
+    right: 5%;
+    bottom: -10%;
+    width: 45vw;
+    height: 70vh;
+    background-color: var(--primary-container);
+    border-radius: 2rem;
+    transform: rotate(-3deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(14, 165, 233, 0.2);
+}
+
+.hero-image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.placeholder-icon {
+    color: rgba(255, 255, 255, 0.5);
+    width: 120px;
+    height: 120px;
+}
+
+/* Chapters */
+.chapter {
+    padding: 10rem 0;
+}
+
+.chapter-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--primary-container);
+    letter-spacing: 0.1rem;
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    margin-bottom: 3rem;
+}
+
+/* Story Section */
+.section-story {
+    background-color: var(--surface);
+}
+
+.section-story .section-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    align-items: center;
+}
+
+.section-story .section-desc {
+    font-size: 1.5rem;
+    color: var(--on-surface-variant);
+    line-height: 1.8;
+}
+
+.story-image-placeholder {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background-color: var(--surface-container-low);
+    border-radius: 1.5rem;
+}
+
+/* Craft Section */
+.section-craft {
+    background-color: var(--background);
+}
+
+.craft-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+    margin-top: 6rem;
+}
+
+.craft-number {
+    font-size: 6rem;
+    font-weight: 900;
+    color: var(--surface-container-highest);
+    line-height: 1;
+    margin-bottom: -1.5rem;
+    z-index: 0;
+}
+
+.craft-item {
+    position: relative;
+    padding-top: 3rem;
+}
+
+.craft-title {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 10;
+}
+
+.craft-desc {
+    color: var(--on-surface-variant);
+    font-size: 1.125rem;
+}
+
+/* Signatures */
+.section-signatures {
+    background-color: var(--surface-container-low);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+}
+
+.product-card {
+    background-color: var(--surface);
+    border-radius: 1.5rem;
+    padding: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-ambient);
+}
+
+.product-image {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-color: var(--surface-container);
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+}
+
+.product-info {
+    padding: 0 1rem 1.5rem;
+}
+
+.product-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--primary);
+    background-color: var(--surface-container-low);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+}
+
+.product-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-desc {
+    color: var(--on-surface-variant);
+}
+
+/* Moments */
+.section-moments {
+    background-color: var(--surface);
+}
+
+.moments-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 300px);
+    gap: 1.5rem;
+}
+
+.moment-box {
+    background-color: var(--surface-container);
+    border-radius: 1.5rem;
+}
+
+.box-1 { grid-column: 1 / 3; grid-row: 1 / 3; }
+.box-2 { grid-column: 3 / 5; grid-row: 1 / 2; }
+.box-3 { grid-column: 3 / 4; grid-row: 2 / 3; }
+.box-4 { grid-column: 4 / 5; grid-row: 2 / 3; }
+
+/* Footer */
+.footer {
+    background-color: var(--primary);
+    color: #ffffff;
+    padding: 8rem 0 4rem;
+}
+
+.footer-title {
+    font-size: clamp(3rem, 8vw, 6rem);
+    margin-bottom: 4rem;
+    color: #ffffff;
+}
+
+.footer-btn {
+    background-color: var(--surface);
+    color: var(--primary);
+    margin-bottom: 6rem;
+}
+
+.footer-btn:hover {
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+    color: var(--tertiary-container);
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+}
+
+.footer-copy {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.875rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .section-story .section-inner {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+    .craft-grid, .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .moments-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+    }
+    .box-1 { grid-column: 1 / 3; grid-row: auto; aspect-ratio: 16/9; }
+    .box-2 { grid-column: 1 / 3; grid-row: auto; aspect-ratio: 16/9; }
+    .box-3, .box-4 { aspect-ratio: 1/1; }
+    .hero-image-container {
+        width: 60vw;
+        right: -5%;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        top: 1rem;
+        width: calc(100% - 2rem);
+    }
+    .nav-links {
+        display: none;
+    }
+    .craft-grid, .product-grid {
+        grid-template-columns: 1fr;
+    }
+    .hero-title {
+        font-size: 3.5rem;
+        white-space: normal;
+    }
+    .hero-image-container {
+        position: relative;
+        width: 100%;
+        height: 60vh;
+        right: 0;
+        bottom: 0;
+        margin-top: 3rem;
+        transform: none;
+    }
+    .hero {
+        padding-top: 8rem;
+    }
+    .footer-links {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .chapter {
+        padding: 6rem 0;
+    }
+}
+</style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">VIỆT BREW</div>
+        <div class="nav-links">
+            <a href="#story">Story</a>
+            <a href="#craft">Craft</a>
+            <a href="#menu">Signatures</a>
+            <a href="#moments">Moments</a>
+        </div>
+        <button class="btn btn-primary nav-btn">Order Now</button>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">AUTHENTICITY<br>OVERFLOWING</h1>
+            <p class="hero-subtitle">The purest expression of Vietnamese Milk Tea, crafted for the modern palate.</p>
+            <button class="btn btn-primary hero-btn">Explore Menu</button>
+        </div>
+        <div class="hero-image-container">
+            <!-- Simulated premium image -->
+            <div class="hero-image-placeholder">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="placeholder-icon">
+                    <path d="M4 11V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5" />
+                    <path d="M5 11h14l-1.5 10H6.5L5 11z" />
+                    <path d="M12 11v10" />
+                    <path d="M8 11v10" />
+                    <path d="M16 11v10" />
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- Chapter 1: Story -->
+    <section class="chapter section-story" id="story">
+        <div class="container section-inner">
+            <div class="text-content">
+                <span class="chapter-label">CHAPTER 01</span>
+                <h2 class="section-title">The Desire for Real Taste</h2>
+                <p class="section-desc">Born from the bustling streets of Saigon, our milk tea is uncompromising. No artificial powders. No shortcuts. Just robust black tea, rich milk, and the golden sweetness of real honey.</p>
+            </div>
+            <div class="image-content">
+                <div class="story-image-placeholder"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapter 2: Craft -->
+    <section class="chapter section-craft" id="craft">
+        <div class="container">
+            <span class="chapter-label">CHAPTER 02</span>
+            <h2 class="section-title">The Journey & The Craft</h2>
+            <div class="craft-grid">
+                <div class="craft-item">
+                    <div class="craft-number">01</div>
+                    <h3 class="craft-title">Handpicked Leaves</h3>
+                    <p class="craft-desc">Sourced directly from the high-altitude tea estates of Bao Loc.</p>
+                </div>
+                <div class="craft-item">
+                    <div class="craft-number">02</div>
+                    <h3 class="craft-title">Slow Roasted</h3>
+                    <p class="craft-desc">Each batch is slow-roasted to bring out the deep, earthy caramel notes.</p>
+                </div>
+                <div class="craft-item">
+                    <div class="craft-number">03</div>
+                    <h3 class="craft-title">Artisan Brewed</h3>
+                    <p class="craft-desc">Steeped precisely to temperature, ensuring the perfect balance of tannins.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapter 3: Signatures -->
+    <section class="chapter section-signatures" id="menu">
+        <div class="container">
+            <span class="chapter-label">CHAPTER 03</span>
+            <h2 class="section-title">Our Signatures</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image"></div>
+                    <div class="product-info">
+                        <span class="product-tag">BEST SELLER</span>
+                        <h3 class="product-title">The Original Sài Gòn</h3>
+                        <p class="product-desc">Classic robust black tea, fresh organic milk, and handmade honey boba.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image"></div>
+                    <div class="product-info">
+                        <span class="product-tag">PREMIUM</span>
+                        <h3 class="product-title">Jasmine Silk</h3>
+                        <p class="product-desc">Delicate green tea infused with real jasmine blossoms and sea salt cream.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image"></div>
+                    <div class="product-info">
+                        <span class="product-tag">NEW ARRIVAL</span>
+                        <h3 class="product-title">Roasted Oolong Pearl</h3>
+                        <p class="product-desc">Deep roasted oolong tea balanced with light cream and crystal boba.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapter 4: Moments -->
+    <section class="chapter section-moments" id="moments">
+        <div class="container">
+            <span class="chapter-label">CHAPTER 04</span>
+            <h2 class="section-title">Shared Moments</h2>
+            <div class="moments-grid">
+                <div class="moment-box box-1"></div>
+                <div class="moment-box box-2"></div>
+                <div class="moment-box box-3"></div>
+                <div class="moment-box box-4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <h2 class="footer-title">CRAFTED WITH INTENT</h2>
+            <button class="btn btn-primary footer-btn">Order Now</button>
+            <div class="footer-links">
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Locations</a>
+                <a href="#">Contact</a>
+            </div>
+            <p class="footer-copy">© 2026 VIỆT BREW. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
