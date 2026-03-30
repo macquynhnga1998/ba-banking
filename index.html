@@ -415,8 +415,16 @@
                             class="w-full px-6 py-4 rounded-2xl bg-[#f8fafc] border-none focus:ring-2 focus:ring-primary/20 transition-all font-semibold text-slate-700">
                     </div>
                     <div class="pt-6 space-y-4">
-                        <button type="submit"
-                            class="w-full btn-premium py-5 rounded-2xl font-black text-xl shadow-lg">Khởi tạo lộ trình ngay</button>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button type="button" onclick="handleRegistrationSubmit('tư vấn')"
+                                class="w-full py-5 rounded-2xl font-black text-lg bg-white border-2 border-primary/20 text-primary hover:bg-primary/5 transition-all shadow-lg order-2 sm:order-1">
+                                NHẬN TƯ VẤN
+                            </button>
+                            <button type="button" onclick="handleRegistrationSubmit('đăng ký')"
+                                class="w-full btn-premium py-5 rounded-2xl font-black text-lg shadow-lg order-1 sm:order-2">
+                                ĐĂNG KÝ NGAY
+                            </button>
+                        </div>
                         
                         <div class="flex items-center gap-4 py-2">
                             <div class="flex-1 h-px bg-slate-200"></div>
@@ -491,6 +499,9 @@
         const db = getFirestore(app);
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
+        
+        // Success Modal Text Element
+        const modalMessage = document.getElementById('success-modal').querySelector('p');
 
         AOS.init({
             duration: 1000,
@@ -510,50 +521,13 @@
             }
         });
 
-        // Handle Registration Form Submission
-        const registrationForm = document.getElementById('registration-form');
-        if (registrationForm) {
-            registrationForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-
-                const submitBtn = registrationForm.querySelector('button[type="submit"]');
-                const originalBtnText = submitBtn.innerText;
-
-                // Get form values
-                const name = document.getElementById('form-name').value;
-                const phone = document.getElementById('form-phone').value;
-                const email = document.getElementById('form-email').value;
-
-                try {
-                    // Show loading state
-                    submitBtn.innerText = "ĐANG XỬ LÝ...";
-                    submitBtn.disabled = true;
-
-                    // Add document to "registrations" collection
-                    const docRef = await addDoc(collection(db, "registrations"), {
-                        fullName: name,
-                        phone: phone,
-                        email: email,
-                        createdAt: serverTimestamp(),
-                        source: "BA Core Landing Page"
-                    });
-
-                    console.log("Document written with ID: ", docRef.id);
-                    showModal();
-                    registrationForm.reset();
-                } catch (error) {
-                    console.error("Error adding document: ", error);
-                    alert("Có lỗi xảy ra: " + error.message + ". Vui lòng thử lại sau.");
-                } finally {
-                    submitBtn.innerText = originalBtnText;
-                    submitBtn.disabled = false;
-                }
-            });
-        }
-
         // Modal Functions
-        window.showModal = function() {
+        window.showModal = function(type) {
             const modal = document.getElementById('success-modal');
+            modalMessage.innerHTML = type === 'tư vấn' 
+                ? "Yêu cầu **Nhận tư vấn** của bạn đã được chuyển đến bộ phận chuyên môn. Chúng tôi sẽ liên hệ trong vòng 24h tới."
+                : "Chúc mừng bạn đã **Đăng ký thành công**! Mentor sẽ liên hệ hướng dẫn bạn nhập học ngay hôm nay.";
+            
             modal.classList.remove('opacity-0', 'pointer-events-none');
             modal.querySelector('div:last-child').classList.remove('scale-90');
             modal.querySelector('div:last-child').classList.add('scale-100');
