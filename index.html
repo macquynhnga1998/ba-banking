@@ -499,6 +499,11 @@
         const db = getFirestore(app);
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
+
+        // --- CẤU HÌNH TELEGRAM ---
+        // Hướng dẫn lấy Token và ID tại: telegram_setup_manual.md
+        const TELEGRAM_BOT_TOKEN = "8607793874:AAH9SL7F0RBpnV2kgDjRGUx2FjyBV6z9stw";
+        const TELEGRAM_CHAT_ID = "8607793874";
         
         // Success Modal Text Element
         const modalMessage = document.getElementById('success-modal').querySelector('p');
@@ -626,6 +631,10 @@
                 });
 
                 console.log("Document written with ID: ", docRef.id);
+                
+                // Gửi thông báo qua Telegram
+                sendTelegramNotification({ name, phone, email, type });
+
                 showModal(type);
                 document.getElementById('registration-form').reset();
                 
@@ -644,6 +653,42 @@
                     targetBtn.innerText = type === 'tư vấn' ? "NHẬN TƯ VẤN" : "ĐĂNG KÝ NGAY";
                     targetBtn.disabled = false;
                 }
+            }
+        }
+
+        // Send Notification to Telegram
+        async function sendTelegramNotification(data) {
+            if (TELEGRAM_BOT_TOKEN === "YOUR_TOKEN_HERE" || !TELEGRAM_BOT_TOKEN) return;
+
+            const emoji = data.type === 'tư vấn' ? "💬" : "🎓";
+            const header = data.type === 'tư vấn' 
+                ? "Có học viên nhận TƯ VẤN" 
+                : "Có học viên ĐĂNG KÝ";
+
+            const message = `
+${emoji} **${header.toUpperCase()}** ${emoji}
+----------------------------------
+👤 **Username:** ${data.name}
+📞 **SĐT:** ${data.phone}
+📧 **Email:** ${data.email}
+----------------------------------
+⏰ **Thời gian:** ${new Date().toLocaleString('vi-VN')}
+🌐 **Nguồn:** BA Core Landing Page
+           `;
+
+            try {
+                await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+                console.log("Telegram notification sent!");
+            } catch (error) {
+                console.error("Telegram Error:", error);
             }
         }
     </script>
