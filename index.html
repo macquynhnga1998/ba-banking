@@ -594,6 +594,58 @@
                 `;
             }
         });
+
+        // Handle Registration Data Submission
+        window.handleRegistrationSubmit = async function(type) {
+            const name = document.getElementById('form-name').value;
+            const phone = document.getElementById('form-phone').value;
+            const email = document.getElementById('form-email').value;
+
+            if (!name || !phone || !email) {
+                alert("Vui lòng điền đầy đủ thông tin!");
+                return;
+            }
+
+            try {
+                // Determine target button for loading state
+                const btns = document.querySelectorAll('#registration-form button');
+                const targetBtn = Array.from(btns).find(b => b.innerText.toLowerCase().includes(type));
+                const originalText = targetBtn?.innerText || (type === 'tư vấn' ? "NHẬN TƯ VẤN" : "ĐĂNG KÝ NGAY");
+                
+                if (targetBtn) {
+                    targetBtn.innerText = "ĐANG GỬI...";
+                    targetBtn.disabled = true;
+                }
+
+                const docRef = await addDoc(collection(db, "registrations"), {
+                    name: name,
+                    phone: phone,
+                    email: email,
+                    type: type, // tư vấn hoặc đăng ký
+                    timestamp: serverTimestamp()
+                });
+
+                console.log("Document written with ID: ", docRef.id);
+                showModal(type);
+                document.getElementById('registration-form').reset();
+                
+                if (targetBtn) {
+                    targetBtn.innerText = originalText;
+                    targetBtn.disabled = false;
+                }
+            } catch (error) {
+                console.error("Error adding document: ", error);
+                alert("Có lỗi xảy ra: " + error.message);
+                
+                // Reset button state
+                const btns = document.querySelectorAll('#registration-form button');
+                const targetBtn = Array.from(btns).find(b => b.innerText.toLowerCase().includes(type));
+                if (targetBtn) {
+                    targetBtn.innerText = type === 'tư vấn' ? "NHẬN TƯ VẤN" : "ĐĂNG KÝ NGAY";
+                    targetBtn.disabled = false;
+                }
+            }
+        }
     </script>
 
     <style>
