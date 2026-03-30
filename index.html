@@ -1,604 +1,386 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIỆT BREW - Premium Vietnamese Milk Tea</title>
+    <title>BA Core - Đào Tạo Thực Chiến & Kết Nối Sự Nghiệp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-/* Sài Gòn Cerulean Design System */
-:root {
-    /* Colors */
-    --primary: #006591;
-    --primary-container: #0EA5E9;
-    --secondary: #00668a;
-    --secondary-container: #38BDF8;
-    --tertiary-container: #F97316; /* Warm Orange CTA */
-    
-    --background: #f7f9fb;
-    --surface: #ffffff;
-    --surface-container-low: #f2f4f6;
-    --surface-container: #eceef0;
-    --surface-container-highest: #e0e3e5;
+        :root {
+            --primary: #6a37d4;
+            --primary-container: #ae8dff;
+            --secondary: #b00d6a;
+            --background: #f6f6ff;
+            --surface-low: #eef0ff;
+            --surface-lowest: #ffffff;
+            --on-surface: #272e42;
+            --on-surface-variant: #535b71;
+            --outline-variant: rgba(165, 173, 198, 0.15);
+        }
 
-    --on-background: #191c1e;
-    --on-surface-variant: #3e4850;
-    --outline-variant: #bec8d2;
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--on-surface);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
 
-    /* Shadows */
-    --shadow-ambient: 0 20px 40px rgba(25, 28, 30, 0.04);
-}
+        h1, h2, h3, h4 {
+            font-family: 'Manrope', sans-serif;
+            letter-spacing: -0.02em;
+        }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-}
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
 
-body {
-    font-family: 'Be Vietnam Pro', sans-serif;
-    background-color: var(--background);
-    color: var(--on-background);
-    line-height: 1.6;
-    overflow-x: hidden;
-}
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-/* Typography */
-h1, h2, h3, h4 {
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-}
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
 
-.text-center { text-align: center; }
+        .btn-premium {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 25px -5px rgba(106, 55, 212, 0.3);
+        }
 
-/* Buttons */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-family: inherit;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border: none;
-    transition: all 0.3s ease-out;
-}
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 30px -10px rgba(106, 55, 212, 0.4);
+        }
 
-.btn-primary {
-    background-color: var(--tertiary-container);
-    color: #ffffff;
-    border-radius: 9999px;
-    padding: 1rem 2.5rem;
-    font-size: 1rem;
-}
+        .tonal-card {
+            background: var(--surface-lowest);
+            border-radius: 1.5rem;
+            transition: all 0.4s ease;
+        }
 
-.btn-primary:hover {
-    transform: scale(1.02);
-    box-shadow: 0 10px 20px rgba(249, 115, 22, 0.2);
-}
+        .tonal-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(39, 46, 66, 0.06);
+        }
 
-/* Layout */
-.container {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
+        .ghost-border {
+            border: 1px solid var(--outline-variant);
+        }
 
-/* Navbar */
-.navbar {
-    position: fixed;
-    top: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 3rem);
-    max-width: 1200px;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    border-radius: 9999px;
-    z-index: 100;
-    box-shadow: var(--shadow-ambient);
-}
+        .path-step::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary);
+            opacity: 0.1;
+            transform: translateX(-50%);
+        }
 
-.logo {
-    font-weight: 900;
-    font-size: 1.25rem;
-    color: var(--primary);
-    letter-spacing: -0.02em;
-}
+        .hero-tag {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-radius: 0.75rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            position: absolute;
+            z-index: 20;
+        }
 
-.nav-links a {
-    text-decoration: none;
-    color: var(--on-surface-variant);
-    font-weight: 500;
-    margin: 0 1rem;
-    transition: color 0.2s;
-}
-
-.nav-links a:hover {
-    color: var(--primary);
-}
-
-.nav-btn {
-    padding: 0.75rem 1.5rem;
-    font-size: 0.875rem;
-}
-
-/* Hero */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 6rem;
-    background: linear-gradient(135deg, var(--background) 0%, var(--surface-container-low) 100%);
-    position: relative;
-}
-
-.hero-content {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    z-index: 10;
-    width: 100%;
-}
-
-.hero-title {
-    font-size: clamp(4rem, 10vw, 12rem);
-    color: var(--primary);
-    text-transform: uppercase;
-    margin-bottom: 2rem;
-    white-space: nowrap;
-}
-
-.hero-subtitle {
-    font-size: 1.25rem;
-    max-width: 500px;
-    color: var(--on-surface-variant);
-    margin-bottom: 3rem;
-    font-weight: 400;
-}
-
-.hero-image-container {
-    position: absolute;
-    right: 5%;
-    bottom: -10%;
-    width: 45vw;
-    height: 70vh;
-    background-color: var(--primary-container);
-    border-radius: 2rem;
-    transform: rotate(-3deg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
-    overflow: hidden;
-    box-shadow: 0 30px 60px rgba(14, 165, 233, 0.2);
-}
-
-.hero-image-placeholder {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.placeholder-icon {
-    color: rgba(255, 255, 255, 0.5);
-    width: 120px;
-    height: 120px;
-}
-
-/* Chapters */
-.chapter {
-    padding: 10rem 0;
-}
-
-.chapter-label {
-    display: block;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--primary-container);
-    letter-spacing: 0.1rem;
-    margin-bottom: 2rem;
-}
-
-.section-title {
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    margin-bottom: 3rem;
-}
-
-/* Story Section */
-.section-story {
-    background-color: var(--surface);
-}
-
-.section-story .section-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8rem;
-    align-items: center;
-}
-
-.section-story .section-desc {
-    font-size: 1.5rem;
-    color: var(--on-surface-variant);
-    line-height: 1.8;
-}
-
-.story-image-placeholder {
-    width: 100%;
-    aspect-ratio: 3/4;
-    background-color: var(--surface-container-low);
-    border-radius: 1.5rem;
-}
-
-/* Craft Section */
-.section-craft {
-    background-color: var(--background);
-}
-
-.craft-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4rem;
-    margin-top: 6rem;
-}
-
-.craft-number {
-    font-size: 6rem;
-    font-weight: 900;
-    color: var(--surface-container-highest);
-    line-height: 1;
-    margin-bottom: -1.5rem;
-    z-index: 0;
-}
-
-.craft-item {
-    position: relative;
-    padding-top: 3rem;
-}
-
-.craft-title {
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
-    position: relative;
-    z-index: 10;
-}
-
-.craft-desc {
-    color: var(--on-surface-variant);
-    font-size: 1.125rem;
-}
-
-/* Signatures */
-.section-signatures {
-    background-color: var(--surface-container-low);
-}
-
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-}
-
-.product-card {
-    background-color: var(--surface);
-    border-radius: 1.5rem;
-    padding: 1rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-ambient);
-}
-
-.product-image {
-    width: 100%;
-    aspect-ratio: 1/1;
-    background-color: var(--surface-container);
-    border-radius: 1rem;
-    margin-bottom: 2rem;
-}
-
-.product-info {
-    padding: 0 1rem 1.5rem;
-}
-
-.product-tag {
-    display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--primary);
-    background-color: var(--surface-container-low);
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    margin-bottom: 1rem;
-}
-
-.product-title {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.product-desc {
-    color: var(--on-surface-variant);
-}
-
-/* Moments */
-.section-moments {
-    background-color: var(--surface);
-}
-
-.moments-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 300px);
-    gap: 1.5rem;
-}
-
-.moment-box {
-    background-color: var(--surface-container);
-    border-radius: 1.5rem;
-}
-
-.box-1 { grid-column: 1 / 3; grid-row: 1 / 3; }
-.box-2 { grid-column: 3 / 5; grid-row: 1 / 2; }
-.box-3 { grid-column: 3 / 4; grid-row: 2 / 3; }
-.box-4 { grid-column: 4 / 5; grid-row: 2 / 3; }
-
-/* Footer */
-.footer {
-    background-color: var(--primary);
-    color: #ffffff;
-    padding: 8rem 0 4rem;
-}
-
-.footer-title {
-    font-size: clamp(3rem, 8vw, 6rem);
-    margin-bottom: 4rem;
-    color: #ffffff;
-}
-
-.footer-btn {
-    background-color: var(--surface);
-    color: var(--primary);
-    margin-bottom: 6rem;
-}
-
-.footer-btn:hover {
-    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
-    color: var(--tertiary-container);
-}
-
-.footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    margin-bottom: 4rem;
-}
-
-.footer-links a {
-    color: rgba(255, 255, 255, 0.7);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s;
-}
-
-.footer-links a:hover {
-    color: #ffffff;
-}
-
-.footer-copy {
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 0.875rem;
-}
-
-/* Responsive */
-@media (max-width: 1024px) {
-    .section-story .section-inner {
-        grid-template-columns: 1fr;
-        gap: 4rem;
-    }
-    .craft-grid, .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .moments-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: auto;
-    }
-    .box-1 { grid-column: 1 / 3; grid-row: auto; aspect-ratio: 16/9; }
-    .box-2 { grid-column: 1 / 3; grid-row: auto; aspect-ratio: 16/9; }
-    .box-3, .box-4 { aspect-ratio: 1/1; }
-    .hero-image-container {
-        width: 60vw;
-        right: -5%;
-    }
-}
-
-@media (max-width: 768px) {
-    .navbar {
-        top: 1rem;
-        width: calc(100% - 2rem);
-    }
-    .nav-links {
-        display: none;
-    }
-    .craft-grid, .product-grid {
-        grid-template-columns: 1fr;
-    }
-    .hero-title {
-        font-size: 3.5rem;
-        white-space: normal;
-    }
-    .hero-image-container {
-        position: relative;
-        width: 100%;
-        height: 60vh;
-        right: 0;
-        bottom: 0;
-        margin-top: 3rem;
-        transform: none;
-    }
-    .hero {
-        padding-top: 8rem;
-    }
-    .footer-links {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-    .chapter {
-        padding: 6rem 0;
-    }
-}
-</style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--background);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-container);
+            border-radius: 4px;
+        }
+    </style>
 </head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">VIỆT BREW</div>
-        <div class="nav-links">
-            <a href="#story">Story</a>
-            <a href="#craft">Craft</a>
-            <a href="#menu">Signatures</a>
-            <a href="#moments">Moments</a>
+<body class="overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-6xl z-50 glass py-3 px-8 rounded-full flex justify-between items-center ghost-border shadow-sm">
+        <div class="text-xl font-black gradient-text">BA Core.</div>
+        <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+            <a href="#about" class="hover:text-primary transition-colors">Khóa học</a>
+            <a href="#why" class="hover:text-primary transition-colors">Nổi bật</a>
+            <a href="#path" class="hover:text-primary transition-colors">Chương trình</a>
+            <a href="#register" class="hover:text-primary transition-colors">Đăng ký</a>
         </div>
-        <button class="btn btn-primary nav-btn">Order Now</button>
+        <a href="#register" class="btn-premium px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider">
+            Bắt đầu ngay
+        </a>
     </nav>
 
-    <!-- Hero -->
-    <header class="hero" id="home">
-        <div class="hero-content">
-            <h1 class="hero-title">AUTHENTICITY<br>OVERFLOWING</h1>
-            <p class="hero-subtitle">The purest expression of Vietnamese Milk Tea, crafted for the modern palate.</p>
-            <button class="btn btn-primary hero-btn">Explore Menu</button>
-        </div>
-        <div class="hero-image-container">
-            <!-- Simulated premium image -->
-            <div class="hero-image-placeholder">
-                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="placeholder-icon">
-                    <path d="M4 11V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5" />
-                    <path d="M5 11h14l-1.5 10H6.5L5 11z" />
-                    <path d="M12 11v10" />
-                    <path d="M8 11v10" />
-                    <path d="M16 11v10" />
-                </svg>
+    <!-- Hero Section -->
+    <section class="relative pt-48 pb-32 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+            <div class="flex-1 space-y-8 text-center lg:text-left" data-aos="fade-right">
+                <span class="inline-block px-4 py-1.5 bg-indigo-50 text-primary text-[0.65rem] font-black uppercase tracking-[0.2em] rounded-full">
+                    Khai phóng tiềm năng BA
+                </span>
+                <h1 class="text-4xl md:text-6xl lg:text-[5.5rem] font-black leading-[1.05] text-[#1e293b] max-w-5xl">
+                    ĐÀO TẠO THỰC CHIẾN<br>KẾT NỐI SỰ NGHIỆP
+                </h1>
+                <p class="text-lg text-slate-500 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
+                    Lộ trình toàn diện từ tư duy, kiến thức nền tảng, thực chiến dự án ngân hàng đến ứng dụng AI... giúp bạn trở thành chuyên gia BA trong lĩnh vực Tài chính - Ngân hàng.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-4">
+                    <a href="#path" class="btn-premium px-10 py-5 rounded-2xl text-lg font-bold">
+                        Khám phá lộ trình
+                    </a>
+                    <a href="#register" class="px-10 py-5 rounded-2xl text-lg font-bold bg-white text-slate-700 ghost-border hover:bg-slate-50 transition-all">
+                        Tư vấn miễn phí
+                    </a>
+                </div>
             </div>
-        </div>
-    </header>
 
-    <!-- Chapter 1: Story -->
-    <section class="chapter section-story" id="story">
-        <div class="container section-inner">
-            <div class="text-content">
-                <span class="chapter-label">CHAPTER 01</span>
-                <h2 class="section-title">The Desire for Real Taste</h2>
-                <p class="section-desc">Born from the bustling streets of Saigon, our milk tea is uncompromising. No artificial powders. No shortcuts. Just robust black tea, rich milk, and the golden sweetness of real honey.</p>
-            </div>
-            <div class="image-content">
-                <div class="story-image-placeholder"></div>
+            <div class="flex-1 relative w-full max-w-xl" data-aos="fade-left">
+                <div class="relative w-full aspect-square bg-gradient-to-tr from-indigo-50/50 to-rose-50/50 rounded-[3rem] p-6 lg:p-12">
+                    <div class="w-full h-full bg-white rounded-[2rem] shadow-2xl overflow-hidden relative group">
+                        <div class="absolute inset-0 bg-gradient-to-br from-slate-50 to-white flex items-center justify-center">
+                            <img src="./ba_core_hero.png" alt="BA Core Hero" class="w-full h-full object-cover">
+                        </div>
+                        
+                        <!-- Decorative Elements from Stitch Design -->
+                        <div class="hero-tag top-8 left-8" style="animation: float 6s ease-in-out infinite;">Banking Core</div>
+                        <div class="hero-tag top-24 right-8" style="animation: float 6s ease-in-out infinite 1s;">Business Process</div>
+                        <div class="hero-tag bottom-24 left-12" style="animation: float 6s ease-in-out infinite 2s;">AI Driven</div>
+                        <div class="hero-tag bottom-8 right-12" style="animation: float 6s ease-in-out infinite 3s;">Mindset First</div>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <!-- Ambient Background Light -->
+        <div class="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/5 rounded-full blur-[100px] pointer-events-none"></div>
     </section>
 
-    <!-- Chapter 2: Craft -->
-    <section class="chapter section-craft" id="craft">
-        <div class="container">
-            <span class="chapter-label">CHAPTER 02</span>
-            <h2 class="section-title">The Journey & The Craft</h2>
-            <div class="craft-grid">
-                <div class="craft-item">
-                    <div class="craft-number">01</div>
-                    <h3 class="craft-title">Handpicked Leaves</h3>
-                    <p class="craft-desc">Sourced directly from the high-altitude tea estates of Bao Loc.</p>
-                </div>
-                <div class="craft-item">
-                    <div class="craft-number">02</div>
-                    <h3 class="craft-title">Slow Roasted</h3>
-                    <p class="craft-desc">Each batch is slow-roasted to bring out the deep, earthy caramel notes.</p>
-                </div>
-                <div class="craft-item">
-                    <div class="craft-number">03</div>
-                    <h3 class="craft-title">Artisan Brewed</h3>
-                    <p class="craft-desc">Steeped precisely to temperature, ensuring the perfect balance of tannins.</p>
-                </div>
+    <!-- Stats Section -->
+    <section id="about" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- New About Content -->
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-primary font-black uppercase tracking-widest text-xs">Về chúng tôi</span>
+                <h2 class="text-4xl md:text-5xl font-black mt-4 text-[#1e293b]">VỀ KHÓA HỌC BA CORE</h2>
+                <p class="mt-6 text-slate-500 max-w-3xl mx-auto text-lg leading-relaxed font-medium">
+                    Chúng tôi cung cấp khóa học Business Analyst chuyên sâu trong lĩnh vực tài chính, được xây dựng từ kinh nghiệm thực tế của các chuyên gia. Học viên được đào tạo theo dự án thực tế, ứng dụng AI hiện đại.
+                </p>
             </div>
-        </div>
-    </section>
 
-    <!-- Chapter 3: Signatures -->
-    <section class="chapter section-signatures" id="menu">
-        <div class="container">
-            <span class="chapter-label">CHAPTER 03</span>
-            <h2 class="section-title">Our Signatures</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="product-image"></div>
-                    <div class="product-info">
-                        <span class="product-tag">BEST SELLER</span>
-                        <h3 class="product-title">The Original Sài Gòn</h3>
-                        <p class="product-desc">Classic robust black tea, fresh organic milk, and handmade honey boba.</p>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="tonal-card p-12 text-center bg-[#f8fafc]/50" data-aos="fade-up" data-aos-delay="0">
+                    <div class="text-5xl font-black gradient-text mb-4">500+</div>
+                    <div class="text-sm font-bold text-slate-500 uppercase tracking-widest">Học viên tin tưởng</div>
                 </div>
-                <div class="product-card">
-                    <div class="product-image"></div>
-                    <div class="product-info">
-                        <span class="product-tag">PREMIUM</span>
-                        <h3 class="product-title">Jasmine Silk</h3>
-                        <p class="product-desc">Delicate green tea infused with real jasmine blossoms and sea salt cream.</p>
-                    </div>
+                <div class="tonal-card p-12 text-center bg-[#f8fafc]/50" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-5xl font-black gradient-text mb-4">95%</div>
+                    <div class="text-sm font-bold text-slate-500 uppercase tracking-widest">Tỉ lệ có việc làm</div>
                 </div>
-                <div class="product-card">
-                    <div class="product-image"></div>
-                    <div class="product-info">
-                        <span class="product-tag">NEW ARRIVAL</span>
-                        <h3 class="product-title">Roasted Oolong Pearl</h3>
-                        <p class="product-desc">Deep roasted oolong tea balanced with light cream and crystal boba.</p>
-                    </div>
+                <div class="tonal-card p-12 text-center bg-[#f8fafc]/50" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-5xl font-black gradient-text mb-4">10+</div>
+                    <div class="text-sm font-bold text-slate-500 uppercase tracking-widest">Năm kinh nghiệm</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Chapter 4: Moments -->
-    <section class="chapter section-moments" id="moments">
-        <div class="container">
-            <span class="chapter-label">CHAPTER 04</span>
-            <h2 class="section-title">Shared Moments</h2>
-            <div class="moments-grid">
-                <div class="moment-box box-1"></div>
-                <div class="moment-box box-2"></div>
-                <div class="moment-box box-3"></div>
-                <div class="moment-box box-4"></div>
+    <!-- Features Section -->
+    <section id="why" class="py-32 bg-[#f6f6ff]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <span class="text-primary font-black uppercase tracking-widest text-xs">Giá trị cốt lõi</span>
+                <h2 class="text-4xl md:text-5xl font-black mt-4 text-[#1e293b]">TẠI SAO CHỌN BA CORE</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="tonal-card p-10 bg-white group hover:bg-slate-50" data-aos="zoom-in" data-aos-delay="0">
+                    <div class="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Tư duy & Kỹ năng</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Phát triển tư duy phản biện và kỹ năng giải quyết vấn đề thực tế trong môi trường ngân hàng.</p>
+                </div>
+                
+                <div class="tonal-card p-10 bg-white group hover:bg-slate-50" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-rose-50 rounded-2xl flex items-center justify-center text-secondary mb-8 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Dự án thực tế</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Trải nghiệm trực tiếp trên các hệ thống Core Banking và quy trình nghiệp vụ thực thụ.</p>
+                </div>
+                
+                <div class="tonal-card p-10 bg-white group hover:bg-slate-50" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 mb-8 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Ứng dụng AI</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Tận dụng tối đa sức mạnh của AI để tối ưu hóa việc phân tích yêu cầu và viết tài liệu nghiệp vụ.</p>
+                </div>
+                
+                <div class="tonal-card p-10 bg-white group hover:bg-slate-50" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-8 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Kết nối sự nghiệp</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Mạng lưới đối tác rộng lớn, hỗ trợ học viên kết nối trực tiếp với các nhà tuyển dụng hàng đầu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Path Section -->
+    <section id="path" class="py-32 bg-white overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-24" data-aos="fade-up">
+                <span class="text-primary font-black uppercase tracking-widest text-xs">Chương trình đào tạo</span>
+                <h2 class="text-4xl md:text-5xl font-black mt-4 text-[#1e293b]">LỘ TRÌNH THỰC CHIẾN</h2>
+            </div>
+            
+            <div class="relative space-y-24">
+                <div class="absolute left-1/2 -translate-x-1/2 top-4 bottom-4 w-px bg-indigo-100 hidden md:block"></div>
+                
+                <div class="relative flex flex-col md:flex-row items-center gap-8 md:gap-0" data-aos="fade-right">
+                    <div class="flex-1 md:pr-20 md:text-right">
+                        <div class="inline-block px-3 py-1 bg-indigo-50 text-primary text-[0.6rem] font-black uppercase mb-3 rounded-md">Phần 01</div>
+                        <h3 class="text-2xl font-black mb-3">Nền tảng & Tư duy BA</h3>
+                        <p class="text-slate-500 text-sm">Xây dựng kiến thức cốt lõi, hiểu sâu về vai trò và trách nhiệm của BA trong quy trình phát triển phần mềm ngân hàng.</p>
+                    </div>
+                    <div class="relative z-10 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white ring-8 ring-indigo-50 font-black shadow-lg">1</div>
+                    <div class="flex-1 hidden md:block"></div>
+                </div>
+
+                <div class="relative flex flex-col md:flex-row-reverse items-center gap-8 md:gap-0" data-aos="fade-left">
+                    <div class="flex-1 md:pl-20">
+                        <div class="inline-block px-3 py-1 bg-rose-50 text-secondary text-[0.6rem] font-black uppercase mb-3 rounded-md">Phần 02</div>
+                        <h3 class="text-2xl font-black mb-3">Nghiệp vụ Tài chính - Ngân hàng</h3>
+                        <p class="text-slate-500 text-sm">Đi sâu vào các module nghiệp vụ: Tiết kiệm, Tín dụng, Thanh toán quốc tế, Core Banking System.</p>
+                    </div>
+                    <div class="relative z-10 w-12 h-12 bg-secondary rounded-full flex items-center justify-center text-white ring-8 ring-rose-50 font-black shadow-lg">2</div>
+                    <div class="flex-1 hidden md:block"></div>
+                </div>
+
+                <div class="relative flex flex-col md:flex-row items-center gap-8 md:gap-0" data-aos="fade-right">
+                    <div class="flex-1 md:pr-20 md:text-right">
+                        <div class="inline-block px-3 py-1 bg-blue-50 text-blue-600 text-[0.6rem] font-black uppercase mb-3 rounded-md">Phần 03</div>
+                        <h3 class="text-2xl font-black mb-3">Ứng dụng AI cho BA</h3>
+                        <p class="text-slate-500 text-sm">Hướng dẫn sử dụng các công cụ AI hỗ trợ viết User Stories, vẽ Wireframe và phân tích dữ liệu nhanh chóng.</p>
+                    </div>
+                    <div class="relative z-10 w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white ring-8 ring-blue-50 font-black shadow-lg">3</div>
+                    <div class="flex-1 hidden md:block"></div>
+                </div>
+
+                <div class="relative flex flex-col md:flex-row-reverse items-center gap-8 md:gap-0" data-aos="fade-left">
+                    <div class="flex-1 md:pl-20">
+                        <div class="inline-block px-3 py-1 bg-emerald-50 text-emerald-600 text-[0.6rem] font-black uppercase mb-3 rounded-md">Phần 04</div>
+                        <h3 class="text-2xl font-black mb-3">Đồ án cuối khóa & Career Hub</h3>
+                        <p class="text-slate-500 text-sm">Thực hiện dự án thực tế dưới sự hướng dấn của Mentor và chuẩn bị hành trang phỏng vấn tại các bank.</p>
+                    </div>
+                    <div class="relative z-10 w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white ring-8 ring-emerald-50 font-black shadow-lg">4</div>
+                    <div class="flex-1 hidden md:block"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section id="register" class="py-32 bg-[#f6f6ff]">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="tonal-card bg-white p-8 md:p-16 border-t-8 border-primary relative overflow-hidden shadow-2xl" data-aos="zoom-in-up">
+                <div class="relative z-10 text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-black mb-4">SẴN SÀNG ĐỘT PHÁ SỰ NGHIỆP?</h2>
+                    <p class="text-slate-500 font-medium">Đăng ký ngay để nhận tư vấn lộ trình 1-1 miễn phí.</p>
+                </div>
+
+                <form class="space-y-6 relative z-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-[0.7rem] font-black uppercase tracking-widest text-slate-400 mb-2 ml-4">Họ và tên</label>
+                            <input type="text" placeholder="Nguyễn Văn A" class="w-full px-6 py-4 rounded-2xl bg-[#f8fafc] border-none focus:ring-2 focus:ring-primary/20 transition-all font-semibold text-slate-700">
+                        </div>
+                        <div>
+                            <label class="block text-[0.7rem] font-black uppercase tracking-widest text-slate-400 mb-2 ml-4">Số điện thoại</label>
+                            <input type="tel" placeholder="0901 234 567" class="w-full px-6 py-4 rounded-2xl bg-[#f8fafc] border-none focus:ring-2 focus:ring-primary/20 transition-all font-semibold text-slate-700">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-[0.7rem] font-black uppercase tracking-widest text-slate-400 mb-2 ml-4">Email cá nhân</label>
+                        <input type="email" placeholder="name@company.com" class="w-full px-6 py-4 rounded-2xl bg-[#f8fafc] border-none focus:ring-2 focus:ring-primary/20 transition-all font-semibold text-slate-700">
+                    </div>
+                    <div class="pt-6">
+                        <button type="submit" class="w-full btn-premium py-5 rounded-2xl font-black text-xl shadow-lg">XÁC NHẬN ĐĂNG KÝ</button>
+                    </div>
+                    <p class="text-center text-[0.65rem] text-slate-400 font-bold uppercase tracking-widest">Cam kết bảo mật thông tin 100%</p>
+                </form>
+
+                <!-- Background Accent -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-50 rounded-full -mr-32 -mt-32 blur-3xl opacity-50"></div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container text-center">
-            <h2 class="footer-title">CRAFTED WITH INTENT</h2>
-            <button class="btn btn-primary footer-btn">Order Now</button>
-            <div class="footer-links">
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
-                <a href="#">Locations</a>
-                <a href="#">Contact</a>
+    <footer class="py-20 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="text-3xl font-black gradient-text mb-8">BA Core.</div>
+            <div class="flex flex-wrap justify-center gap-8 mb-12 text-sm font-bold text-slate-400 uppercase tracking-widest">
+                <a href="#" class="hover:text-primary transition-colors">Facebook</a>
+                <a href="#" class="hover:text-primary transition-colors">LinkedIn</a>
+                <a href="#" class="hover:text-primary transition-colors">YouTube</a>
+                <a href="#" class="hover:text-primary transition-colors">Cộng đồng</a>
             </div>
-            <p class="footer-copy">© 2026 VIỆT BREW. All rights reserved.</p>
+            <p class="text-slate-400 text-xs font-semibold">© 2026 BA CORE TRAINING ACADEMY. ALL RIGHTS RESERVED.</p>
         </div>
     </footer>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            easing: 'ease-out-cubic'
+        });
+
+        // Sticky Navbar Effect on Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg');
+                nav.style.width = '95%';
+            } else {
+                nav.classList.remove('shadow-lg');
+                nav.style.width = '90%';
+            }
+        });
+    </script>
+    
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+    </style>
 </body>
 </html>
